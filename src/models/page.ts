@@ -1,4 +1,4 @@
-import { PageConstructorConfig } from 'src/types';
+import { PageConstructorConfig, PageJson } from 'src/types';
 import Element from './element';
 
 class Page {
@@ -49,6 +49,19 @@ class Page {
 
     elements.forEach((ele) => {
       page.addChild(ele);
+    });
+
+    return page;
+  }
+
+  toJson(): PageJson {
+    const page: PageJson = {
+      name: this.name,
+      elements: [],
+    };
+
+    this.elements.forEach((element: Element) => {
+      page.elements.push(element.toJson());
     });
 
     return page;

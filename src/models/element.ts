@@ -1,5 +1,5 @@
 import { genUuid } from 'src/utils/uuid';
-import { ElementConstructorConfig } from 'src/types';
+import { ElementConstructorConfig, ElementJson } from 'src/types';
 
 class Element {
   readonly id: number;
@@ -53,6 +53,22 @@ class Element {
     elements.forEach((ele) => {
       element.addChild(ele);
     });
+
+    return element;
+  }
+
+  toJson(): ElementJson {
+    const element: ElementJson = {
+      id: this.id,
+      name: this.name,
+      elements: [],
+    };
+
+    if (this.size) {
+      this.elements.forEach((ele: Element) => {
+        element.elements.push(ele.toJson());
+      });
+    }
 
     return element;
   }

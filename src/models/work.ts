@@ -1,4 +1,4 @@
-import { WorkConstructorConfig } from 'src/types';
+import { WorkConstructorConfig, WorkJson } from 'src/types';
 import Page from './page';
 
 class Work {
@@ -61,6 +61,20 @@ class Work {
     });
 
     return work;
+  }
+
+  toJson(): WorkJson {
+    const myWork: WorkJson = {
+      id: this.id,
+      name: this.name,
+      elements: [],
+    };
+
+    this.elements.forEach((page: Page) => {
+      myWork.elements.push(page.toJson());
+    });
+
+    return myWork;
   }
 }
 
