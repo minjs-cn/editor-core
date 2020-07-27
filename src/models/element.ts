@@ -1,5 +1,5 @@
-import { genUuid } from '../utils/uuid';
-import { ElementConstructorConfig } from '../types';
+import { genUuid } from 'src/utils/uuid';
+import { ElementConstructorConfig } from 'src/types';
 
 class Element {
   readonly id: number;

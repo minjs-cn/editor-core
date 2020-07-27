@@ -1,4 +1,4 @@
-import { PageConstructorConfig } from '../types';
+import { PageConstructorConfig } from 'src/types';
 import Element from './element';
 
 class Page {

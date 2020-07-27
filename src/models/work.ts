@@ -1,6 +1,5 @@
-import { WorkConstructorConfig } from '../types';
+import { WorkConstructorConfig } from 'src/types';
 import Page from './page';
-import Element from './element';
 
 class Work {
   readonly id: number;
@@ -63,23 +62,6 @@ class Work {
 
     return work;
   }
-}
-
-function createWork(work: WorkConstructorConfig) {
-  const myWork = new Work({
-    name: work.name,
-  });
-
-  const page = new Page();
-  const element = new Element({
-    name: 'Welcome',
-  });
-
-  page.addChild(element);
-
-  myWork.addChild(page);
-
-  return myWork;
 }
 
 export default Work;
