@@ -3,3 +3,5 @@ export { Page } from './models/page';
 export { Work } from './models/work';
 
 export { createWorkspace, restoreWorkspace } from './core';
+
+export * from './types';

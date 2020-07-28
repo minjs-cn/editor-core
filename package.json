@@ -1,8 +1,9 @@
 {
   "name": "@minjs/editor-core",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "编辑器核心库",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
