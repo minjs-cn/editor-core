@@ -1,25 +1,39 @@
-import { WorkConstructorConfig, WorkJson, PageJson, ElementJson } from 'src/types';
+import { WorkJson, PageJson, ElementJson } from 'src/types';
 import Work from 'src/models/work';
 import Page from 'src/models/page';
-import Element from 'src/models/element';
+import Element, { getElementEditorBasicStyle } from 'src/models/element';
 
-export function createEmptyWork(work: WorkJson): Work {
-  const emptyWorkJson = work || {
+/**
+ * 创建一个空的工作区
+ */
+export function createWorkspace(): Work {
+  const emptyWorkJson: WorkJson = {
+    name: 'New Work',
     elements: [
       {
+        name: 'New Page',
         elements: [
           {
             name: 'Welcome',
+            elements: [],
+            editorProps: {
+              title: 'welcome',
+            },
+            editorStyle: getElementEditorBasicStyle(),
           },
         ],
       },
     ],
   };
 
-  return createEmptyWork(emptyWorkJson);
+  return restoreWorkspace(emptyWorkJson);
 }
 
-export function createWork(work: WorkJson): Work {
+/**
+ * 恢复工作区
+ * @param work - 工作区Json对象，一般是从数据库取出来
+ */
+export function restoreWorkspace(work: WorkJson): Work {
   const myWork = new Work({
     id: work.id,
     name: work.name,

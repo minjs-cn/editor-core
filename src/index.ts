@@ -1,7 +1,5 @@
-export { default as Element } from './models/element';
-export { default as Page } from './models/page';
-export { default as Work } from './models/work';
+export { Element, getElementEditorBasicStyle, getElementEditorProps } from './models/element';
+export { Page } from './models/page';
+export { Work } from './models/work';
 
-export * as editor_core from './core';
-
-export * as editor_utils from './utils';
+export { createWorkspace, restoreWorkspace } from './core';
