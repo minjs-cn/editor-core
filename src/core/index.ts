@@ -1,5 +1,5 @@
 import { WorkJson, PageJson, ElementJson } from 'src/types';
-import Work from 'src/models/work';
+import Work, { defaultWorkJson } from 'src/models/work';
 import Page from 'src/models/page';
 import Element, { getElementEditorBasicStyle } from 'src/models/element';
 
@@ -8,7 +8,8 @@ import Element, { getElementEditorBasicStyle } from 'src/models/element';
  */
 export function createWorkspace(): Work {
   const emptyWorkJson: WorkJson = {
-    name: 'New Work',
+    name: defaultWorkJson.mode,
+    mode: defaultWorkJson.mode,
     elements: [
       {
         name: 'New Page',
@@ -37,6 +38,7 @@ export function restoreWorkspace(work: WorkJson): Work {
   const myWork = new Work({
     id: work.id,
     name: work.name,
+    mode: work.mode,
   });
 
   work.elements.forEach((pageJson: PageJson) => {

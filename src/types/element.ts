@@ -12,7 +12,7 @@ export interface ElementProps {
 }
 
 export interface ElementEditorProps {
-  [index: string]: number | string;
+  [index: string]: any;
 }
 
 export interface ElementConstructorConfig {

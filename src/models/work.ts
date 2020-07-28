@@ -1,7 +1,39 @@
-import { WorkConstructorConfig, WorkJson } from 'src/types';
+import { WorkConstructorConfig, WorkJson, WorkMode, WorkModeTemplate, WorkModes } from 'src/types';
 import Page from './page';
 
+export const defaultWorkJson: WorkConstructorConfig = {
+  name: 'New Work',
+  mode: 'h5_long_page',
+};
+
+export const h5_long_page: WorkModeTemplate = {
+  name: 'h5_long_page',
+  maxPages: 1,
+  minPages: 1,
+};
+
+export const h5_swiper: WorkModeTemplate = {
+  name: 'h5_swiper',
+  maxPages: 100,
+  minPages: 2,
+};
+
 export class Work {
+  /**
+   * 工作区类型
+   */
+  static Modes: WorkModes = {};
+  /**
+   * 注册工作区
+   * @param workMode - 工作区类型对象
+   */
+  static use(workMode: WorkModeTemplate) {
+    if (Work.Modes[workMode.name]) {
+      throw new Error(`工作区类型 ${workMode.name} 已经注册了`);
+    }
+
+    Work.Modes[workMode.name] = workMode;
+  }
   /**
    * Id，数据库唯一标识
    */
@@ -10,7 +42,7 @@ export class Work {
   /**
    * 名称，仅显示用
    */
-  name: string;
+  name: string | undefined;
 
   /**
    * 页面数组，使用数组是为了考虑多页面的场景
@@ -25,12 +57,22 @@ export class Work {
   }
 
   /**
+   * 工作区类型，决定了用什么模版去渲染页面
+   */
+  readonly mode: WorkMode;
+
+  /**
    * 创建一个工作区
    * @param param0 - 构建参数
    */
-  constructor({ id, name = 'New Work' }: WorkConstructorConfig = {}) {
+  constructor({
+    id,
+    name = defaultWorkJson.name,
+    mode = defaultWorkJson.mode,
+  }: WorkConstructorConfig = defaultWorkJson) {
     this.id = id || 0;
     this.name = name;
+    this.mode = mode;
   }
 
   /**
@@ -38,7 +80,9 @@ export class Work {
    * @param page - 页面
    */
   addChild(page: Page) {
-    this.elements.push(page);
+    if (this.canAdd()) {
+      this.elements.push(page);
+    }
 
     return this;
   }
@@ -74,10 +118,17 @@ export class Work {
   }
 
   /**
-   * 判断是否可以移除页面，默认至少有一个页面
+   * 判断是否可以移除页面
    */
   canRemove(): boolean {
-    return this.elements.length > 1;
+    return this.size > Work.Modes[this.mode].minPages;
+  }
+
+  /**
+   * 判断是否可以添加页面
+   */
+  canAdd(): boolean {
+    return this.size < Work.Modes[this.mode].maxPages;
   }
 
   /**
@@ -86,6 +137,7 @@ export class Work {
   clone() {
     const work = new Work({
       name: this.name,
+      mode: this.mode,
     });
 
     const elements = this.elements.map((page): Page => page.clone());
@@ -105,6 +157,7 @@ export class Work {
       id: this.id,
       name: this.name,
       elements: [],
+      mode: this.mode,
     };
 
     this.elements.forEach((page: Page) => {
@@ -114,5 +167,8 @@ export class Work {
     return myWork;
   }
 }
+
+Work.use(h5_long_page);
+Work.use(h5_swiper);
 
 export default Work;
