@@ -1,5 +1,6 @@
 .DS_Store
 lib
+types
 node_modules
 
 # Log files
