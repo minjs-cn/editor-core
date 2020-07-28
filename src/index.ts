@@ -1,7 +1,3 @@
-export { Element, getElementEditorBasicStyle, getElementEditorProps } from './models/element';
-export { Page } from './models/page';
-export { Work } from './models/work';
+export * from './models';
 
 export { createWorkspace, restoreWorkspace } from './core';
-
-export * from './types';

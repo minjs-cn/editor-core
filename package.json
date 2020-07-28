@@ -1,6 +1,6 @@
 {
   "name": "@minjs/editor-core",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "编辑器核心库",
   "main": "lib/index.js",
   "module": "lib/index.js",

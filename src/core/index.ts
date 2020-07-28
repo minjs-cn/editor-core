@@ -1,7 +1,13 @@
-import { WorkJson, PageJson, ElementJson } from 'src/types';
-import Work, { defaultWorkJson } from 'src/models/work';
-import Page from 'src/models/page';
-import Element, { getElementEditorBasicStyle } from 'src/models/element';
+import {
+  Page,
+  Work,
+  Element,
+  getElementEditorBasicStyle,
+  defaultWorkJson,
+  WorkJson,
+  PageJson,
+  ElementJson,
+} from '../models';
 
 /**
  * 创建一个空的工作区
