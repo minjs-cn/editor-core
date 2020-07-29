@@ -10,7 +10,8 @@
     "dev": "tsc --watch",
     "build": "tsc",
     "test": "mocha",
-    "lint": "eslint src --fix --ext .ts"
+    "lint": "eslint src --fix --ext .ts",
+    "doc": "typedoc"
   },
   "files": [
     "lib",
@@ -31,6 +32,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "mocha": "^8.0.1",
     "prettier": "^2.0.5",
+    "typedoc": "^0.17.8",
     "typescript": "^3.9.7"
   }
 }
