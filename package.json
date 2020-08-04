@@ -1,14 +1,14 @@
 {
   "name": "@minjs/editor-core",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "编辑器核心库",
-  "main": "lib/index.js",
-  "module": "lib/index.js",
-  "types": "types/index.d.ts",
-  "typings": "types/index.d.ts",
+  "main": "lib/index.umd.js",
+  "module": "lib/index.umd.js",
+  "types": "lib/index.d.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "dev": "tsc --watch",
-    "build": "tsc",
+    "build": "node scripts/build.js",
     "test": "mocha",
     "lint": "eslint src --fix --ext .ts",
     "doc": "typedoc"
@@ -32,6 +32,8 @@
     "eslint-plugin-prettier": "^3.1.4",
     "mocha": "^8.0.1",
     "prettier": "^2.0.5",
+    "rollup": "^2.23.0",
+    "rollup-plugin-typescript2": "^0.27.1",
     "typedoc": "^0.17.8",
     "typescript": "^3.9.7"
   }
